@@ -10,12 +10,12 @@ try{
 				$email =$_POST["email"];
 				$_SESSION["email"] = $email;
 				$senha = $_POST["senha"];
-				$senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+				$_SESSION["senha"] = $senha;
 				$tipoConta =$_POST["tipoConta"];
 				$_SESSION["tipoConta"] = $tipoConta;
 
 				$stmt->bindValue(1, $email);
-				$stmt->bindValue(2, $senhaCriptografada);
+				$stmt->bindValue(2, $senha);
 				$stmt->bindValue(3, $tipoConta);
 
 				$stmt->execute();

@@ -1,11 +1,17 @@
 <?php
-     
-    session_start();
-    if (!isset($_SESSION["email"])) {
-      header("Location: login.php");
-    }
 
+    if(isset($_POST['salvar'])):
+    	$formatosPermitidos = array("png", "jpeg", "jpg", "gif", "mp4", "txt");
+    	$extensao = pathinfo($FILES['arquivo']['name'], PATHINFO_EXTENSION);
+    	if(in_array($extensao, $formatosPermitidos)):
+    		echo "sim existe";
+    	else:
+    		echo "não existe";
+    	endif;	
+    	
+    endif;	
 ?>
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -21,17 +27,6 @@
 </head>
 
 <body>
-<?php 
-
-  try{
-        require('conexao.php');
-
-      $stmt = $conexao->prepare("select email from usuario where email = ?");
-
-    }catch(PDOException $e){
-      echo $e->getMessage();
-    }
-?>	
 <nav id="divMenu" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		
@@ -59,11 +54,25 @@
 
 	<div align="center" style="color: #6E6E6E; font-size: 30px;">
 		<p>
-			educandus-dev-selecao <br>
+			educandus-dev-selecao 
 		</p>
 
 	</div>
 
+<div align="center">
+		<form action="salvarArquivo.php" method="POST" enctype="multipart/form-data">
+		<fieldset>
+        <legend>salvar arquivo</legend>
+
+        <div>
+            <input type="file" name="arquivo"/>
+        </div>
+    	</fieldset>
+			<input type="submit" name="salvar">
+		</form>
+	
+	</div>
+	
 	<p style="margin-top: 5%;">
 	
 	<hr class="linhaSeparador">

@@ -20,19 +20,19 @@
 	    <div>
 			<ul class="nav navbar-nav">
 			
-				<li><a href="">Home</a></li>		
+				<li><a href="index.php">Home</a></li>		
 
 				<li><a>|</a></li>
 				
-				<li><a href="">cadastro</a></li>
+				<li><a href="cadastro.php">cadastro</a></li>
 				
 				<li><a>|</a></li>
 				
-				<li><a href="">login</a></li>
+				<li><a href="login.php">login</a></li>
 				
 				<li><a>|</a></li>
 				
-				<li><a href="">Sair</a></li>
+				<li><a href="logout.php">Sair</a></li>
 				
 			</ul>
 		</div>
@@ -47,17 +47,16 @@
 	</div>
 
 	<div align="center">
-
 		<form action="dados.php" method="POST">
 		<fieldset>
         <legend>Cadastro</legend>
         <div>
         	<label for="huey">E-mail</label>
-            <input type="text" name="email">
+            <input type="email" name="email" placeholder="exemplo@hotmail.com">
         </div>
         <div>
          	<label for="huey">Senha</label>
-            <input type="password" name="senha" minlength="8">            
+            <input type="password" pattern="[a-zA-Z0-9]+" name="senha" minlength="8">            
         </div>
         <div>
             <input type="radio" name="tipoConta" value="gratuita" checked />
@@ -68,11 +67,11 @@
             <input type="radio" name="tipoConta" value="premium" />
             <label for="dewey">conta Premium</label>
         </div>
+
     </fieldset>
 			<input type="submit" name="cadastrar">
 		</form>
-		
-
+	
 	</div>
 	
 	<p style="margin-top: 5%;">

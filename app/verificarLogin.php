@@ -1,5 +1,5 @@
 <?php
-  $email = $_POST["email"];
+  $login = $_POST["login"];
   $senha = $_POST["senha"];
 
   try{
@@ -8,7 +8,7 @@
 
 	$stmt =$conexao->prepare("select email, senha from usuario where email = ? ");
 
-	$stmt->bindParam(1, $email);
+	$stmt->bindParam(1, $login);
 
 	$stmt->execute();	
 
@@ -19,8 +19,7 @@
 		if(password_verify($senha, $linha["senha"])){
 			
 			session_start();
-
-			$_SESSION["email"]=$email;
+			$_SESSION["login"]=$login;
 			$_SESSION["email"]=$linha["email"];
 
 

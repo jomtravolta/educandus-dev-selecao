@@ -19,19 +19,19 @@
 	    <div>
 			<ul class="nav navbar-nav">
 			
-				<li><a href="">Home</a></li>		
+				<li><a href="index.php">Home</a></li>		
 
 				<li><a>|</a></li>
 				
-				<li><a href="">cadastro</a></li>
+				<li><a href="cadastro.php">cadastro</a></li>
 				
 				<li><a>|</a></li>
 				
-				<li><a href="">login</a></li>
+				<li><a href="login.php">login</a></li>
 				
 				<li><a>|</a></li>
 				
-				<li><a href="">Sair</a></li>
+				<li><a href="logout.php">Sair</a></li>
 				
 			</ul>
 		</div>
@@ -47,19 +47,19 @@
 
 	<div align="center">
 
-		<form action="bd_login" method="POST">
+		<form action="verificarLogin.php" method="POST">
 		<fieldset>
         <legend>Login</legend>
         <div>
         	<label for="huey">E-mail</label>
-            <input type="text" name="email">
+            <input type="email" name="login" placeholder="exemplo@hotmail.com">
         </div>
         <div>
          	<label for="huey">Senha</label>
-            <input type="password" name="senha" minlength="8">            
+            <input type="password" pattern="[a-zA-Z0-9]+" name="senha" minlength="8">            
         </div>
     </fieldset>
-			<button type="submit" name="btn-entrar">Entrar</button>
+			<button class="button button-block" name="btn-entrar">Entrar</button>
 		</form>
 		
 
