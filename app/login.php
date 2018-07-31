@@ -1,3 +1,36 @@
+<?php
+require_once 'conexaoMYSQLI.php';
+
+session_start();
+
+if(isset($_POST['btn-entrar'])):
+	$erros = array();
+	$login = mysqli_escape_string($connect, $_POST['login']);
+	$senha = mysqli_escape_string($connect, $_POST['senha']);
+	if(empty($login) or empty($senha)):
+		$erros[] = "camos de login e senha vazios!";
+	else:
+		$sql = "SELECT email FROM usuario WHERE email = '$login'";
+		$resultado = mysqli_query($connect, $sql);
+		if(mysqli_num_rows($resultado) > 0):
+			$sql = "SELECT * FROM usuario WHERE email = '$login' AND senha = '$senha'";
+			$resultado = mysqli_query($connect, $sql);
+
+			if(mysqli_num_rows($resultado) == 1):
+				$dados = mysqli_fetch_array($resultado);
+				$_SESSION['logado'] = true;
+				$_SESSION['id_usuario'] = $dados['id'];
+				header('location: home.php');
+			else: 
+				$erros [] = "Usuário e senha incorretos";
+			endif;
+		else:
+			$erros[] = "Usuário não existe!";
+		endif;
+	endif;
+endif;
+?>
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -47,9 +80,16 @@
 
 	<div align="center">
 
-		<form action="verificarLogin.php" method="POST">
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 		<fieldset>
         <legend>Login</legend>
+        <?php
+        if(!empty($erros)):
+        	foreach($erros as $erro):
+        		echo $erro;
+        	endforeach;
+        endif;	
+        ?>
         <div>
         	<label for="huey">E-mail</label>
             <input type="email" name="login" placeholder="exemplo@hotmail.com">

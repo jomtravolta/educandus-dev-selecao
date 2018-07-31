@@ -1,7 +1,7 @@
 <?php
 
 try{		
-			require('conexao.php');
+			require('conexaoPDO.php');
 
 			$stmt = $conexao->prepare("insert into usuario (email, senha, tipo_conta) values (?,?,?)");
 			

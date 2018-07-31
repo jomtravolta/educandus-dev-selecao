@@ -1,11 +1,3 @@
-<?php
-     
-    session_start();
-    if (!isset($_SESSION["email"])) {
-      header("Location: login.php");
-    }
-
-?>
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -21,17 +13,6 @@
 </head>
 
 <body>
-<?php 
-
-  try{
-        require('conexao.php');
-
-      $stmt = $conexao->prepare("select email from usuario where email = ?");
-
-    }catch(PDOException $e){
-      echo $e->getMessage();
-    }
-?>	
 <nav id="divMenu" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		

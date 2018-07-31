@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -47,7 +46,7 @@
 	</div>
 
 	<div align="center">
-		<form action="dados.php" method="POST">
+		<form action="dadosCadastro.php" method="POST">
 		<fieldset>
         <legend>Cadastro</legend>
         <div>

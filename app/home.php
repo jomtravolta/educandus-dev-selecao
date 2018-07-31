@@ -1,15 +1,20 @@
 <?php
 
-    if(isset($_POST['salvar'])):
-    	$formatosPermitidos = array("png", "jpeg", "jpg", "gif", "mp4", "txt");
-    	$extensao = pathinfo($FILES['arquivo']['name'], PATHINFO_EXTENSION);
-    	if(in_array($extensao, $formatosPermitidos)):
-    		echo "sim existe";
-    	else:
-    		echo "não existe";
-    	endif;	
-    	
-    endif;	
+require_once 'conexaoMYSQLI.php';
+
+session_start();
+
+if(!isset($_SESSION['logado'])):
+	header("location: index.php");
+endif;
+
+$id = $_SESSION['id_usuario'];
+
+$sql = "SELECT * FROM usuario WHERE id = '$id'";
+
+$resultado = mysqli_query($connect, $sql);
+
+$dados = mysqli_fetch_array($resultado);
 ?>
 
 <!DOCTYPE html>
@@ -54,25 +59,11 @@
 
 	<div align="center" style="color: #6E6E6E; font-size: 30px;">
 		<p>
-			educandus-dev-selecao 
+			Bem vindo <?php echo $dados['email']; ?> <br>
 		</p>
 
 	</div>
 
-<div align="center">
-		<form action="salvarArquivo.php" method="POST" enctype="multipart/form-data">
-		<fieldset>
-        <legend>salvar arquivo</legend>
-
-        <div>
-            <input type="file" name="arquivo"/>
-        </div>
-    	</fieldset>
-			<input type="submit" name="salvar">
-		</form>
-	
-	</div>
-	
 	<p style="margin-top: 5%;">
 	
 	<hr class="linhaSeparador">
