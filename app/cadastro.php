@@ -45,7 +45,7 @@
 
 	</div>
 
-	<div align="center">
+	<div align="center" style="color: #6E6E6E; font-size: 30px;">
 		<form action="dadosCadastro.php" method="POST">
 		<fieldset>
         <legend>Cadastro</legend>
@@ -58,15 +58,27 @@
             <input type="password" pattern="[a-zA-Z0-9]+" name="senha" minlength="8">            
         </div>
         <div>
-            <input type="radio" name="tipoConta" value="gratuita" checked />
-            <label for="huey">conta Gratuita</label>
-        </div>
 
-        <div>
-            <input type="radio" name="tipoConta" value="premium" />
-            <label for="dewey">conta Premium</label>
-        </div>
+              <select title="qual o tipo da conta?" data-width="100%" name="contas">
+                <?php
+                /*
+  	              try{
+  						require('conexaoMYSQLI.php');
 
+  						$resultado = $conexao->query("SELECT id, descricao FROM contas");
+
+                	 foreach ($resultado as $linha) {
+            echo "<option data-tokens=".$linha['descricao']."value=".$linha['id'].">".$linha['descricao']."</option>";
+            			}
+
+  			         }catch(PDOException $e){
+  			      echo $e->getMessage();
+  			         }
+  			         */
+                ?>
+
+              </select>
+              </div>
     </fieldset>
 			<input type="submit" name="cadastrar">
 		</form>

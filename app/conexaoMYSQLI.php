@@ -11,18 +11,3 @@ if(mysqli_connect_error()):
 	echo "falha na conexão: ".mysqli_connect_error();
 endif;
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

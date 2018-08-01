@@ -3,7 +3,7 @@
 try{		
 			require('conexaoPDO.php');
 
-			$stmt = $conexao->prepare("insert into usuario (email, senha, tipo_conta) values (?,?,?)");
+			$stmt = $conexao->prepare("INSERT INTO usuario (email, senha, id_contas) VALUES (?,?,?)");
 			
 				session_start();
 	
@@ -11,8 +11,8 @@ try{
 				$_SESSION["email"] = $email;
 				$senha = $_POST["senha"];
 				$_SESSION["senha"] = $senha;
-				$tipoConta =$_POST["tipoConta"];
-				$_SESSION["tipoConta"] = $tipoConta;
+				$tipoConta =$_POST["id_contas"];
+				$_SESSION["id_contas"] = $tipoConta;
 
 				$stmt->bindValue(1, $email);
 				$stmt->bindValue(2, $senha);

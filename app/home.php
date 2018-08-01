@@ -32,6 +32,29 @@ $dados = mysqli_fetch_array($resultado);
 </head>
 
 <body>
+
+	<?php
+	if(isset($_POST['btn-salvar'])):
+		$formatos = array("png","mp4","txt");
+		$extensao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
+
+		if(in_array($extensao, $formatos)):
+		$pasta = "arquivos/";
+		$temporario = $_FILES['arquivo']['tmp_name'];
+		$novoNome = uniqid().".$extensao";
+
+		if(move_uploaded_file($temporario, $pasta.$novoNome)):
+			$mensagem = "upload feito corretamente!";
+		else:
+			$mensagem = "erro no upload!";
+		endif;	
+		else:
+		$mensagem = "formato inválido!";
+	endif;	
+
+	echo $mensagem;
+
+	?>
 <nav id="divMenu" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		
@@ -62,6 +85,31 @@ $dados = mysqli_fetch_array($resultado);
 			Bem vindo <?php echo $dados['email']; ?> <br>
 		</p>
 
+
+	</div>
+
+	<div align="center" style="color: #6E6E6E; font-size: 30px;">
+
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+
+		<fieldset>
+
+        <legend>uploud</legend>
+
+        <div>
+
+         	<label for="huey">Arquivo</label>
+
+            <input type="file"  name="arquivo" >   
+
+        </div>
+
+  		</fieldset>
+
+			<button class="button button-block" name="btn-salvar">salvar</button>
+
+		</form>
+		
 	</div>
 
 	<p style="margin-top: 5%;">

@@ -78,7 +78,7 @@ endif;
 
 	</div>
 
-	<div align="center">
+	<div align="center" style="color: #6E6E6E; font-size: 30px;">
 
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 		<fieldset>
